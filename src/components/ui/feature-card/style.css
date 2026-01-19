@@ -1,0 +1,60 @@
+/* src/components/ui/feature-card/style.css */
+.feature {
+  width: 540px;
+  min-height: 197px;
+  padding: 20px;
+  background-color: #e1edce;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Занимает всю высоту родителя */
+}
+
+.feature__header {
+  display: flex;
+  margin-bottom: 20px;
+  text-align: left;
+  align-items: flex-start; /* Выравнивание по верху */
+}
+
+.feature__img {
+  width: 56px;
+  height: 56px;
+  margin-right: 20px;
+  flex-shrink: 0; /* Фиксированный размер */
+}
+
+.feature_negative {
+  background-color: #f8ddd7;
+}
+
+.feature__owner {
+  display: inline-block;
+  min-height: 25px;
+  margin-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  line-height: 25px;
+  color: #ffffff;
+  background-color: #88aa4d;
+  border-radius: 2px;
+}
+
+.feature__owner_negative {
+  background-color: #f75531;
+}
+
+.feature__text {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  flex-grow: 1; /* Растягивается на оставшееся пространство */
+  display: flex;
+  align-items: flex-start; /* Текст начинается сверху */
+}
+
+/* Обеспечиваем перенос текста */
+.feature__text p {
+  margin: 0;
+}

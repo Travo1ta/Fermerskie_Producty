@@ -1,0 +1,24 @@
+.features {
+  position: relative;
+  display: flex;
+  padding: 100px 90px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+}
+
+.features__list {
+  margin: 44px 0 64px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Современный способ, вместо margin */
+  max-width: 1140px;
+  list-style: none;
+}
+
+.features__item {
+  width: 540px;
+  margin-top: 20px;
+}
