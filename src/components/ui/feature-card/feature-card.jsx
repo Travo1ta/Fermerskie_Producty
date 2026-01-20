@@ -1,5 +1,5 @@
 import React from "react";
-import Title, { TitleSize } from "../title/title";
+import Title from "../title/title";
 import "./style.css";
 
 function FeatureCard({
@@ -27,7 +27,7 @@ function FeatureCard({
           >
             {owner}
           </span>
-          <Title size={TitleSize.EXTRA_SMALL}>{title}</Title>
+          <Title size="extra-small">{title}</Title>
         </div>
       </header>
       <p

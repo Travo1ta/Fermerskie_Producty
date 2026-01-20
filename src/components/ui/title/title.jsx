@@ -1,19 +1,16 @@
-import React from 'react';
+import React from "react";
+import './style.css';
+import { TitleSize } from './constants';
 
-const Title = ({ children, size = 'medium' }) => {
-  const sizeClass = size ? `title--${size}` : '';
-  return (
-    <h1 className={`title ${sizeClass}`.trim()}>
-      {children}
-    </h1>
-  );
-};
-
-export const TitleSize = {
-  EXTRA_SMALL: 'extra-small',
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large'
-};
+function Title({ children, size = TitleSize.DEFAULT }) {
+    const Tag = size === TitleSize.BIG ? 'h1' : 
+                size === TitleSize.SMALL ? 'h3' : 'h2';
+    
+    return (
+        <Tag className={`title title--${size}`}>
+            {children}
+        </Tag>
+    );
+}
 
 export default Title;
