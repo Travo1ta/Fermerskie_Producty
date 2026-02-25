@@ -28,10 +28,10 @@ const Image = styled.img`
 `;
 
 const Text = styled.span`
-  font-family: 'Arial', sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: 20px;
   font-weight: 700;
-  color: #333333;
+  color: ${(props) => props.theme.colorBlackForText};
   letter-spacing: 0.5px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 

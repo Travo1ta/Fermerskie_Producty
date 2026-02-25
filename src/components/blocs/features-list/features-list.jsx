@@ -7,7 +7,7 @@ import FeatureCard from "../../ui/feature-card/feature-card";
 const StyledSection = styled.section`
   position: relative;
   display: flex;
-  padding: 100px 90px;
+  padding: 100px ${(props) => props.theme.pagePadding};
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
@@ -19,14 +19,14 @@ const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: ${(props) => props.theme.indent};
   max-width: 1140px;
   list-style: none;
 `;
 
 const Item = styled.li`
   width: 540px;
-  margin-top: 20px;
+  margin-top: ${(props) => props.theme.indent};
 `;
 
 function FeaturesList({ features }) {

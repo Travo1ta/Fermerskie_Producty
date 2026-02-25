@@ -5,9 +5,9 @@ import Footer from "../footer/footer";
 import MainPage from "../../pages/main-page";
 
 const Main = styled.main`
-  width: 1280px;
+  width: ${(props) => props.theme.pageWidth};
   margin: 0 auto;
-  padding-bottom: 80px;
+  padding-bottom: ${(props) => props.theme.footerHeight};
 `;
 
 function PageWrapper(prop) {

@@ -4,13 +4,13 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   display: block;
   min-height: 60px;
-  font-size: 18px;
+  font-size: ${(props) => props.theme.fontSizeDefault};
   min-width: 260px;
   max-width: 700px;
   font-weight: 700;
   line-height: 58px;
-  color: #ffffff;
-  background-color: #fc9827;
+  color: ${(props) => props.theme.colorWhite};
+  background-color: ${(props) => props.theme.colorForButton};
   text-align: center;
   border-radius: 5px;
   text-decoration: none;
@@ -22,7 +22,7 @@ const StyledButton = styled.button`
 
   &:hover,
   &:active {
-    background-color: #d7903fff;
+    background-color: ${(props) => props.theme.colorForButtonHover};
     box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.14);
   }
 

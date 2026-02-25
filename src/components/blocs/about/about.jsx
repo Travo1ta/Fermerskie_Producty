@@ -7,7 +7,7 @@ import fermerBackground from "../../../assets/fermer-background.svg";
 const StyledSection = styled.section`
   display: flex;
   position: relative;
-  padding-left: 90px;
+  padding-left: ${(props) => props.theme.pagePadding};
   padding-top: 159px;
   padding-bottom: 159px;
   padding-right: 603px;
@@ -56,9 +56,10 @@ const Text = styled.p`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: ${(props) => props.theme.indent};
   padding-right: 122px;
   margin-bottom: 40px;
+  color: ${(props) => props.theme.colorBlackForText};
 `;
 
 function About() {
