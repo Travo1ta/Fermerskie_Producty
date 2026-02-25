@@ -4,10 +4,10 @@ import features from "./mocks/features";
 import { GlobalStyle } from "./styles";
 
 export default function App() {
-  return (
-    <>
-      <GlobalStyle />
-      <PageWrapper features={features} />
-    </>
-  );
+   return (
+      <>
+         <GlobalStyle />
+         <PageWrapper features={features} />
+      </>
+   );
 }
