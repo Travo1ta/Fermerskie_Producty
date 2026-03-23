@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import MainPage from "../../pages/main-page";
+import Order from "../../pages/order/order";
+// import MainPage from "../../pages/main-page";
 
 const Main = styled.main`
   width: ${(props) => props.theme.pageWidth};
@@ -15,7 +16,7 @@ function PageWrapper(prop) {
       <>
          <Header />
          <Main>
-            <MainPage {...prop} />
+         <Order />   
          </Main>
          <Footer />
       </>
@@ -23,3 +24,5 @@ function PageWrapper(prop) {
 }
 
 export default PageWrapper;
+
+{/* <MainPage {...prop} /> */}

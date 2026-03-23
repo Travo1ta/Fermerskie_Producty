@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   display: block;
   min-height: 60px;
   font-size: ${(props) => props.theme.fontSizeDefault};
-  min-width: 260px;
+  min-width: ${(props) => (props.$maxWidth ? "100%" : "260px")};
   max-width: 700px;
   font-weight: 700;
   line-height: 58px;
@@ -31,8 +31,8 @@ const StyledButton = styled.button`
   }
 `;
 
-function Button({ children }) {
-   return <StyledButton type="button">{children}</StyledButton>;
+function Button({ children, maxWidth }) {
+   return <StyledButton type="button" $maxWidth={maxWidth}>{children}</StyledButton>;
 }
 
 export default Button;
