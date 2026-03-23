@@ -11,12 +11,12 @@ const Main = styled.main`
   padding-bottom: ${(props) => props.theme.footerHeight};
 `;
 
-function PageWrapper(prop) {
+function PageWrapper({ products }) {
    return (
       <>
          <Header />
          <Main>
-         <Order />   
+         <Order  products ={products}/>   
          </Main>
          <Footer />
       </>
