@@ -11,6 +11,8 @@ export const Panel = styled.div`
   width: ${(props) => props.$width || "auto"};
   display: block;
   background-color: ${(props) => props.theme.colorWhite};
+  overflow: hidden;
+  border-radius: 5px;
 `;
 
 export default Panel;
