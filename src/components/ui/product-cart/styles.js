@@ -10,11 +10,11 @@ export const ProductImage = styled.img`
 `;
 
 export const ProductTitle = styled(Title)`
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 export const Price = styled.p`
-  margin: 0;
+  margin: 16px 0 0 0;
   font-size: 18px;
   font-weight: 700;
   line-height: 27px;
