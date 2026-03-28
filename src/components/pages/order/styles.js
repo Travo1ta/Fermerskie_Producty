@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Swiper } from "swiper/react";
 
 export const StyledOrder = styled.div`
   display: flex;
@@ -45,4 +46,32 @@ export const PriceValue = styled.span`
   line-height: 41px;
   color: ${(props) => props.theme.colorBlackForText};
   margin-bottom: 20px;
+`;
+
+export const ProductSwiper = styled(Swiper)`
+  width: 727px;
+
+  .swiper-slide {
+    height: auto;
+  }
+`;
+
+export const CheckboxLabel = styled.span`
+  display: flex;
+  padding: 12px 16px;
+  background-color: ${(props) => 
+    props.$isChecked ? props.theme.colorForButton : props.theme.colorGray
+  };
+  color: ${(props) => 
+    props.$isChecked ? props.theme.colorWhite : props.theme.colorBlackForText
+  };
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  
+  &:hover {
+    background-color: ${(props) => 
+      props.$isChecked ? props.theme.colorForButtonHover : props.theme.colorForLightBackground
+    };
+  }
 `;

@@ -1,30 +1,32 @@
-import React from "react";
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState } from "react";
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import Panel from "../../ui/panel/panel";
 import Title from "../../ui/title/title";
 import { TitleSize } from "../../ui/title/constants";
 import Button from "../../ui/button/button";
+import CheckboxList from "../../ui/checkbox-list/checkbox-list";
 import ProductCart from "../../ui/product-cart/product-cart";
 import {
    LeftColumn,
    StyledOrder,
    AddressInput,
    PriceLabel,
-   PriceValue
+   PriceValue,
+   ProductSwiper,
+   CheckboxLabel
 } from "./styles";
 
-const ProductSwiper = styled(Swiper)`
-  width: 727px;
-
-  .swiper-slide {
-    height: auto;
-  }
-`;
-
 function Order({ products }) {
+   const [selectProductIds, setSelectProductIds] = useState([]);
+
+   const selectedProducts = products.filter(product =>
+      selectProductIds.includes(product.id)
+   );
+
+   const totalPrice = selectedProducts.reduce((sum, product) => sum + product.price, 0);
+
    return (
       <StyledOrder as="form">
          <LeftColumn>
@@ -32,7 +34,17 @@ function Order({ products }) {
                <Title as="h2" size={TitleSize.EXTRA_SMALL} $marginBottom={12}>
                   Выберите продукты
                </Title>
-               {/* Чекбокс со списком продуктов */}
+               <CheckboxList
+                  labelComponent={CheckboxLabel}
+                  name="select-products"
+                  isGridList={false}
+                  options={products.map((product) => ({
+                     value: product.id,
+                     title: product.name
+                  }))}
+                  selectValues={selectProductIds}
+                  onChange={setSelectProductIds}
+               />
             </Panel>
             <Panel>
                <Title size={TitleSize.EXTRA_SMALL} $marginBottom={24}>
@@ -40,7 +52,7 @@ function Order({ products }) {
                </Title>
                <AddressInput placeholder="Введите адрес доставки" />
                <PriceLabel as="span">Цена</PriceLabel>
-               <PriceValue>400</PriceValue>
+               <PriceValue>{totalPrice} руб.</PriceValue>
                <Button maxWidth>Купить</Button>
             </Panel>
          </LeftColumn>
