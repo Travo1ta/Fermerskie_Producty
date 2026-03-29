@@ -50,9 +50,18 @@ export const PriceValue = styled.span`
 
 export const ProductSwiper = styled(Swiper)`
   width: 727px;
+  height: 600px;
 
   .swiper-slide {
     height: auto;
+  }
+  
+  .swiper-scrollbar {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .swiper-scrollbar-drag {
+    background: ${(props) => props.theme.colorForButton};
   }
 `;
 

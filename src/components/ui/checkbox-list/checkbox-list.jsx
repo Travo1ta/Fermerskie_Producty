@@ -19,42 +19,50 @@ export const Li = styled.li`
 `;
 
 function CheckboxList({
-  selectValues,
-  labelComponent,
-  options,
-  name,
-  onChange,
-  isGridList,
-  onClickLabel = () => {}
+   selectValues,
+   labelComponent,
+   options,
+   name,
+   onChange,
+   isGridList,
+   onClickLabel = () => { }
 }) {
-  const handleChange = (value) => {
-    const newValue = [...selectValues];
-    const indexValue = newValue.indexOf(value);
-    if (indexValue >= 0) {
-      newValue.splice(indexValue, 1);
-    } else {
-      newValue.push(value);
-    }
-    onChange?.(newValue);
-  };
+   const handleChange = (value) => {
+      const newValue = [...selectValues];
+      const indexValue = newValue.indexOf(value);
+      if (indexValue >= 0) {
+         newValue.splice(indexValue, 1);
+      } else {
+         newValue.push(value);
+      }
+      onChange?.(newValue);
+   };
 
-  return (
-    <Ul $isGridList={isGridList}>
-      {options.map((option) => (
-        <Li key={option.value}>
-          <Checkbox
-            labelComponent={labelComponent}
-            isChecked={selectValues.includes(option.value)}
-            name={name}
-            value={option.value}
-            text={option.title}
-            onClick={(value) => onClickLabel(value)}
-            onChange={handleChange}
-          />
-        </Li>
-      ))}
-    </Ul>
-  );
+   const handleClickLabel = (value, index) => {
+      console.log("CheckboxList клик:", { value, index });
+      onClickLabel(value, index);
+   };
+
+   return (
+      <Ul $isGridList={isGridList}>
+         {options.map((option, idx) => {
+            const itemIndex = option.index ?? idx;
+            return (
+               <Li key={option.value}>
+                  <Checkbox
+                     labelComponent={labelComponent}
+                     isChecked={selectValues.includes(option.value)}
+                     name={name}
+                     value={option.value}
+                     text={option.title}
+                     onClick={() => handleClickLabel(option.value, itemIndex)}
+                     onChange={handleChange}
+                  />
+               </Li>
+            );
+         })}
+      </Ul>
+   );
 }
 
 export default CheckboxList;
