@@ -26,6 +26,7 @@ register();
 function Order({ products }) {
    const [swiperRef, setSwiperRef] = useState(null);
    const [selectProductIds, setSelectProductIds] = useState([]);
+   const [address, setAddress] = useState("");
 
    // Получаем список выбранных продуктов по их ID
    const selectProducts = selectProductIds
@@ -45,6 +46,30 @@ function Order({ products }) {
 
    const handleSwiperInit = (swiper) => {
       setSwiperRef(swiper);
+   };
+
+   // Обработчик покупки
+   const handleBuyClick = () => {
+      // Проверяем, выбран ли хотя бы один продукт
+      if (selectProducts.length === 0) {
+         alert("Пожалуйста, выберите хотя бы один продукт для заказа.");
+         return;
+      }
+
+      // Проверяем, введен ли адрес
+      if (!address.trim()) {
+         alert("Пожалуйста, введите адрес доставки.");
+         return;
+      }
+
+      // Формируем сообщение о заказе
+      const productsList = selectProducts.map(
+         (product) => `${product.name} - ${product.price} руб.`
+      ).join("\n");
+
+      alert(
+         `Спасибо за заказ!\n\nВы купили:\n${productsList}\n\nИтого: ${fullPrice} руб.\nДоставка по адресу: ${address}.`
+      );
    };
 
    return (
@@ -72,10 +97,16 @@ function Order({ products }) {
                <Title size={TitleSize.EXTRA_SMALL} $marginBottom={24}>
                   Сделать заказ
                </Title>
-               <AddressInput placeholder="Введите адрес доставки" />
+               <AddressInput
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Введите адрес доставки"
+               />
                <PriceLabel as="span">Цена</PriceLabel>
                <Price value={fullPrice} />
-               <Button maxWidth>Купить</Button>
+               <Button maxWidth onClick={handleBuyClick}>
+                  Купить
+               </Button>
             </Panel>
          </LeftColumn>
          <RightColumn>
