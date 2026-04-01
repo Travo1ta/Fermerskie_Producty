@@ -17,7 +17,8 @@ import {
    PriceLabel,
    ProductSwiper,
    CheckboxLabel,
-   RightColumn
+   RightColumn,
+   EmptyMessage
 } from "./styles";
 
 import { register } from 'swiper/element/bundle';
@@ -30,7 +31,7 @@ function Order({ products }) {
 
    // Получаем список выбранных продуктов по их ID
    const selectProducts = selectProductIds
-      .map((id) => products.find((product) => product.id === id))
+      .map((id) => products?.find((product) => product.id === id))
       .filter((product) => product !== undefined);
 
    // Вычисляем общую стоимость выбранных продуктов
@@ -50,19 +51,6 @@ function Order({ products }) {
 
    // Обработчик покупки
    const handleBuyClick = () => {
-      // Проверяем, выбран ли хотя бы один продукт
-      if (selectProducts.length === 0) {
-         alert("Пожалуйста, выберите хотя бы один продукт для заказа.");
-         return;
-      }
-
-      // Проверяем, введен ли адрес
-      if (!address.trim()) {
-         alert("Пожалуйста, введите адрес доставки.");
-         return;
-      }
-
-      // Формируем сообщение о заказе
       const productsList = selectProducts.map(
          (product) => `${product.name} - ${product.price} руб.`
       ).join("\n");
@@ -71,6 +59,14 @@ function Order({ products }) {
          `Спасибо за заказ!\n\nВы купили:\n${productsList}\n\nИтого: ${fullPrice} руб.\nДоставка по адресу: ${address}.`
       );
    };
+
+   // Проверка, можно ли включить кнопку "Купить"
+   const isBuyButtonDisabled = !(selectProductIds.length > 0 && address.trim().length > 0);
+
+   // Если нет продуктов, показываем сообщение
+   if (!products || products.length === 0) {
+      return <EmptyMessage>Продукты были слишком вкусные и их разобрали.</EmptyMessage>;
+   }
 
    return (
       <StyledOrder>
@@ -104,7 +100,11 @@ function Order({ products }) {
                />
                <PriceLabel as="span">Цена</PriceLabel>
                <Price value={fullPrice} />
-               <Button maxWidth onClick={handleBuyClick}>
+               <Button
+                  maxWidth
+                  onClick={handleBuyClick}
+                  disabled={isBuyButtonDisabled}
+               >
                   Купить
                </Button>
             </Panel>
@@ -124,8 +124,6 @@ function Order({ products }) {
                   releaseOnEdges: true
                }}
                freeMode={true}
-               freeModeMomentum={true}
-               freeModeMomentumRatio={0.8}
                observer={true}
                observeParents={true}
                speed={400}

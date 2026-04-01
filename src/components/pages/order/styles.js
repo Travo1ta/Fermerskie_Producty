@@ -92,12 +92,12 @@ export const ProductSwiper = styled(Swiper)`
 export const CheckboxLabel = styled.span`
   display: flex;
   padding: 12px 16px;
-  background-color: ${(props) => 
-    props.$isChecked ? props.theme.colorForButton : props.theme.colorGray
-  };
-  color: ${(props) => 
-    props.$isChecked ? props.theme.colorWhite : props.theme.colorBlackForText
-  };
+  background-color: ${(props) =>
+      props.$isChecked ? props.theme.colorForButton : props.theme.colorGray
+   };
+  color: ${(props) =>
+      props.$isChecked ? props.theme.colorWhite : props.theme.colorBlackForText
+   };
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s ease-out;
@@ -105,8 +105,21 @@ export const CheckboxLabel = styled.span`
   pointer-events: auto;
   
   &:hover {
-    background-color: ${(props) => 
+    background-color: ${(props) =>
       props.$isChecked ? props.theme.colorForButtonHover : props.theme.colorForLightBackground
-    };
+   };
   }
+`;
+
+// Компонент для отображения сообщения, когда нет продуктов
+export const EmptyMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: ${(props) => props.theme.colorBlackForText};
+  padding: 40px;
 `;
