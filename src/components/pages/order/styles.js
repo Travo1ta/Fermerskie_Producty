@@ -49,15 +49,6 @@ export const PriceLabel = styled.span`
   margin-bottom: 4px;
 `;
 
-export const PriceValue = styled.span`
-  display: block;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 41px;
-  color: ${(props) => props.theme.colorBlackForText};
-  margin-bottom: 20px;
-`;
-
 export const ProductSwiper = styled(Swiper)`
   width: 100%;
   height: 100%;

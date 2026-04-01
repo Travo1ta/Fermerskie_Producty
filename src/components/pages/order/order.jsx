@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { SwiperSlide } from "swiper/react";
 import { Mousewheel, Scrollbar } from "swiper/modules";
 import "swiper/css";
@@ -9,12 +9,12 @@ import { TitleSize } from "../../ui/title/constants";
 import Button from "../../ui/button/button";
 import CheckboxList from "../../ui/checkbox-list/checkbox-list";
 import ProductCart from "../../ui/product-cart/product-cart";
+import Price from "../../ui/price/price";
 import {
    LeftColumn,
    StyledOrder,
    AddressInput,
    PriceLabel,
-   PriceValue,
    ProductSwiper,
    CheckboxLabel,
    RightColumn
@@ -27,32 +27,25 @@ function Order({ products }) {
    const [swiperRef, setSwiperRef] = useState(null);
    const [selectProductIds, setSelectProductIds] = useState([]);
 
+   // Получаем список выбранных продуктов по их ID
+   const selectProducts = selectProductIds
+      .map((id) => products.find((product) => product.id === id))
+      .filter((product) => product !== undefined);
+
+   // Вычисляем общую стоимость выбранных продуктов
+   const fullPrice = selectProducts.reduce((sum, product) => sum + product.price, 0);
+
    const handleOnClickProduct = (value, index) => {
-      if (swiperRef && typeof swiperRef.slideTo === 'function') {
-         swiperRef.update();
-         setTimeout(() => {
-            swiperRef.slideTo(index, 500);
-         }, 50);
+      if (!selectProductIds.includes(value)) {
+         if (swiperRef && typeof swiperRef.slideTo === 'function') {
+            swiperRef.slideTo(index, 300);
+         }
       }
    };
-
-   const selectedProducts = products.filter(product =>
-      selectProductIds.includes(product.id)
-   );
-
-   const totalPrice = selectedProducts.reduce((sum, product) => sum + product.price, 0);
 
    const handleSwiperInit = (swiper) => {
       setSwiperRef(swiper);
    };
-
-   useEffect(() => {
-      if (swiperRef) {
-         setTimeout(() => {
-            swiperRef.update();
-         }, 100);
-      }
-   }, [selectProductIds, swiperRef]);
 
    return (
       <StyledOrder>
@@ -81,7 +74,7 @@ function Order({ products }) {
                </Title>
                <AddressInput placeholder="Введите адрес доставки" />
                <PriceLabel as="span">Цена</PriceLabel>
-               <PriceValue>{totalPrice} руб.</PriceValue>
+               <Price value={fullPrice} />
                <Button maxWidth>Купить</Button>
             </Panel>
          </LeftColumn>
@@ -97,15 +90,11 @@ function Order({ products }) {
                   enabled: true,
                   forceToAxis: true,
                   sensitivity: 0.5,
-                  releaseOnEdges: true,
-                  thresholdDelta: 10,
-                  thresholdTime: 500
+                  releaseOnEdges: true
                }}
                freeMode={true}
                freeModeMomentum={true}
                freeModeMomentumRatio={0.8}
-               freeModeMomentumVelocityRatio={0.8}
-               freeModeSticky={false}
                observer={true}
                observeParents={true}
                speed={400}
