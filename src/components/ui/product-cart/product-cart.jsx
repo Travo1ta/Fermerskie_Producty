@@ -8,7 +8,7 @@ import { ProductImage, ProductTitle, Price, ContentWrapper } from "./styles";
 function ProductCart({ product }) {
    const tabsList = [
       {
-         title: "Oписание",
+         title: "Описание",
          content: product.description
       },
       {
@@ -28,7 +28,7 @@ function ProductCart({ product }) {
             <ProductTitle as="h3" size={TitleSize.SMALL}>
                {product.name}
             </ProductTitle>
-            <Tabs maxContentHeiht="105px" tabsList={tabsList} />
+            <Tabs maxContentHeiht="100px" tabsList={tabsList} />
             <Price>
                {product.price} руб. / {product.weight} гр.
             </Price>

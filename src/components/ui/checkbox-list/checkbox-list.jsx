@@ -28,6 +28,8 @@ function CheckboxList({
    onClickLabel = () => { }
 }) {
    const handleChange = (value) => {
+      console.log("=== CheckboxList handleChange ===");
+      console.log("Изменение значения:", value);
       const newValue = [...selectValues];
       const indexValue = newValue.indexOf(value);
       if (indexValue >= 0) {
@@ -39,7 +41,10 @@ function CheckboxList({
    };
 
    const handleClickLabel = (value, index) => {
-      console.log("CheckboxList клик:", { value, index });
+      console.log("=== CheckboxList handleClickLabel ===");
+      console.log("Клик на метку, значение:", value);
+      console.log("Клик на метку, индекс:", index);
+      console.log("Вызываем onClickLabel");
       onClickLabel(value, index);
    };
 

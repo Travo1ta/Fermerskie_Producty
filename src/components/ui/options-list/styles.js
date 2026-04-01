@@ -7,10 +7,13 @@ export const List = styled.ul`
 `;
 
 export const Option = styled.li`
-  margin-bottom: 8px;
-  font-size: 14px;
-  line-height: 1.5;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.4;
   color: ${(props) => props.theme.colorBlackForText};
+  word-break: break-word;
+  display: flex;
+  flex-wrap: wrap;
   
   &:last-child {
     margin-bottom: 0;
@@ -19,4 +22,6 @@ export const Option = styled.li`
 
 export const Property = styled.span`
   font-weight: 700;
+  min-width: 130px;
+  flex-shrink: 0;
 `;

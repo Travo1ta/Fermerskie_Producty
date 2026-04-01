@@ -8,10 +8,20 @@ export const StyledOrder = styled.div`
   max-width: ${(props) => props.theme.pageWidth};
   margin: 0 auto;
   box-sizing: border-box;
+  align-items: flex-start;
+  width: 100%;
 `;
 
 export const LeftColumn = styled.div`
   flex: 1;
+  min-width: 0;
+`;
+
+export const RightColumn = styled.div`
+  width: 727px;
+  flex-shrink: 0;
+  height: 700px;
+  position: relative;
 `;
 
 export const AddressInput = styled.input`
@@ -49,19 +59,42 @@ export const PriceValue = styled.span`
 `;
 
 export const ProductSwiper = styled(Swiper)`
-  width: 727px;
-  height: 600px;
-
-  .swiper-slide {
+  width: 100%;
+  height: 100%;
+  
+  .swiper-wrapper {
     height: auto;
+  }
+  
+  .swiper-slide {
+    height: auto !important;
+    margin-bottom: 16px;
+  }
+  
+  .swiper-slide:last-child {
+    margin-bottom: 0;
   }
   
   .swiper-scrollbar {
     background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 4px;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    border-radius: 3px;
+    display: block !important;
+    z-index: 10;
   }
   
   .swiper-scrollbar-drag {
     background: ${(props) => props.theme.colorForButton};
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .swiper-scrollbar-drag:hover {
+    background: ${(props) => props.theme.colorForButtonHover};
   }
 `;
 
@@ -77,6 +110,8 @@ export const CheckboxLabel = styled.span`
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s ease-out;
+  font-size: 14px;
+  pointer-events: auto;
   
   &:hover {
     background-color: ${(props) => 

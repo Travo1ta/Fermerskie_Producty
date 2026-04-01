@@ -15,6 +15,7 @@ export const VisuallyHiddenInput = styled.input`
 
 export const Label = styled.label`
   cursor: pointer;
+  display: block;
 `;
 
 function Checkbox({
@@ -29,6 +30,14 @@ function Checkbox({
 }) {
    const LabelComponent = labelComponent;
 
+   const handleClick = () => {
+      console.log("=== Checkbox handleClick ===");
+      console.log("ID продукта:", value);
+      console.log("isChecked:", isChecked);
+      console.log("Вызываем onClick");
+      onClick(value);
+   };
+
    return (
       <Label>
          <VisuallyHiddenInput
@@ -39,7 +48,7 @@ function Checkbox({
             {...props}
             type="checkbox"
          />
-         <LabelComponent onClick={() => onClick(value)} $isChecked={isChecked}>
+         <LabelComponent onClick={handleClick} $isChecked={isChecked}>
             {text}
          </LabelComponent>
       </Label>

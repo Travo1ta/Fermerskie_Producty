@@ -12,7 +12,7 @@ export const Panel = styled.div`
   display: block;
   background-color: ${(props) => props.theme.colorWhite};
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 8px;
 `;
 
 export default Panel;

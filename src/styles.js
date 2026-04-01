@@ -1,13 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  html {
-    height: 100%;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  body,
-  html {
-    margin: 0;
+  html, body {
+    height: 100%;
   }
 
   body {
@@ -18,5 +19,11 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 27px;
     font-weight: 400;
     color: ${(props) => props.theme.colorBlackForText};
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 `;
