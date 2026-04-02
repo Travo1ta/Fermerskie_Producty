@@ -49,19 +49,30 @@ function Order({ products }) {
       setSwiperRef(swiper);
    };
 
-   // Обработчик покупки
+   // Обработчик покупки с отладкой
    const handleBuyClick = () => {
+      console.log("=== КНОПКА КУПИТЬ НАЖАТА ===");
+      console.log("Выбранные продукты:", selectProducts);
+      console.log("Общая цена:", fullPrice);
+      console.log("Адрес:", address);
+
       const productsList = selectProducts.map(
          (product) => `${product.name} - ${product.price} руб.`
       ).join("\n");
 
-      alert(
-         `Спасибо за заказ!\n\nВы купили:\n${productsList}\n\nИтого: ${fullPrice} руб.\nДоставка по адресу: ${address}.`
-      );
+      const message = `Спасибо за заказ!\n\nВы купили:\n${productsList}\n\nИтого: ${fullPrice} руб.\nДоставка по адресу: ${address}.`;
+      console.log("Сообщение для alert:", message);
+
+      alert(message);
    };
 
    // Проверка, можно ли включить кнопку "Купить"
    const isBuyButtonDisabled = !(selectProductIds.length > 0 && address.trim().length > 0);
+
+   console.log("=== РЕНДЕР ===");
+   console.log("Кнопка disabled?", isBuyButtonDisabled);
+   console.log("Выбранных продуктов:", selectProductIds.length);
+   console.log("Адрес после trim:", `"${address.trim()}"`);
 
    // Если нет продуктов, показываем сообщение
    if (!products || products.length === 0) {
@@ -102,7 +113,10 @@ function Order({ products }) {
                <Price value={fullPrice} />
                <Button
                   maxWidth
-                  onClick={handleBuyClick}
+                  onClick={() => {
+                     console.log("Клик по кнопке из JSX");
+                     handleBuyClick();
+                  }}
                   disabled={isBuyButtonDisabled}
                >
                   Купить

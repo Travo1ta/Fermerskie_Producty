@@ -10,20 +10,26 @@ const StyledButton = styled.button`
   font-weight: 700;
   line-height: 58px;
   color: ${(props) => props.theme.colorWhite};
-  background-color: ${(props) => props.theme.colorForButton};
+  background-color: ${(props) => 
+    props.disabled ? "#cccccc" : props.theme.colorForButton
+  };
   text-align: center;
   border-radius: 5px;
   text-decoration: none;
   border: none;
   background-image: none;
   box-shadow: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: all 0.2s ease-out;
 
   &:hover,
   &:active {
-    background-color: ${(props) => props.theme.colorForButtonHover};
-    box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.14);
+    background-color: ${(props) => 
+      props.disabled ? "#cccccc" : props.theme.colorForButtonHover
+    };
+    box-shadow: ${(props) => 
+      props.disabled ? "none" : "inset 0 4px 0 rgba(0, 0, 0, 0.14)"
+    };
   }
 
   &:active {
@@ -31,8 +37,18 @@ const StyledButton = styled.button`
   }
 `;
 
-function Button({ children, maxWidth }) {
-   return <StyledButton type="button" $maxWidth={maxWidth}>{children}</StyledButton>;
+function Button({ children, maxWidth, disabled, onClick }) {
+  console.log("Button рендер:", { disabled, onClick });
+  return (
+    <StyledButton 
+      type="button" 
+      $maxWidth={maxWidth} 
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </StyledButton>
+  );
 }
 
 export default Button;
