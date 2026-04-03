@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
 
 function Header() {
   return (
-    <StyledHeader data-header>
+    <StyledHeader>
       <Logo />
       <Nav />
     </StyledHeader>
