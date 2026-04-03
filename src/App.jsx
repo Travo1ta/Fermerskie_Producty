@@ -1,16 +1,27 @@
 import React from "react";
-import PageWrapper from "./components/layout/page-wrapper/page-wrapper";
-// import features from "./mocks/features";
-import products from "./mocks/products";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles";
+import { AppRoute } from "./const";
+import PageWrapper from "./components/layout/page-wrapper/page-wrapper";
+import MainPage from "./components/pages/main-page";
+import Order from "./components/pages/order/order";
+import features from "./mocks/features";
+import products from "./mocks/products";
 
-export default function App() {
+function App() {
    return (
       <>
          <GlobalStyle />
-         <PageWrapper products={products} />
+         <Router>
+            <Routes>
+               <Route path={AppRoute.MAIN} element={<PageWrapper />}>
+                  <Route index element={<MainPage features={features} />} />
+                  <Route path={AppRoute.ORDER.replace(AppRoute.MAIN, "")} element={<Order products={products} />} />
+               </Route>
+            </Routes>
+         </Router>
       </>
    );
 }
 
-{/* <PageWrapper features={features} /> */}
+export default App;
